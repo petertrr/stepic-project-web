@@ -4,9 +4,14 @@ def wsgi_application(environ, start_response):
  headers = [
   ('Content-Type', 'text/plain')
  ]
- body = QUERY_STRING.split("&")
+ body = environ['QUERY_STRING'].split("&")
  start_response(status, headers )
  return [ body ]
 
  #конфиг gunicorn
- bind = "0.0.0.0:8080"
+ CONFIG = {
+  'working_dir': '/home/box/web/etc/hello.py',
+  'args': (
+  bind = "0.0.0.0:8080"
+  ),
+  }
