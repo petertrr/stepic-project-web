@@ -5,8 +5,9 @@ def app(environ, start_response):
   ('Content-Type', 'text/plain')
   ]
  body = environ['QUERY_STRING'].split("&")
+ body = [i+'\r\n' for i in body]
  start_response(status, headers )
- return iter([ body ])
+ return body
 
  # gunicorn config
 CONFIG = {
