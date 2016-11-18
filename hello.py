@@ -1,17 +1,17 @@
-def wsgi_application(environ, start_response):
- # бизнес-логика
+def app(environ, start_response):
+ # logic
  status = '200 OK'
  headers = [
   ('Content-Type', 'text/plain')
- ]
+  ]
  body = environ['QUERY_STRING'].split("&")
  start_response(status, headers )
- return [ body ]
+ return iter([ body ])
 
- #конфиг gunicorn
- CONFIG = {
+ # gunicorn config
+CONFIG = {
   'working_dir': '/home/box/web/etc/hello.py',
   'args': (
-  bind = "0.0.0.0:8080"
-  ),
-  }
+   'bind = "0.0.0.0:8080"'
+   ),
+ }
