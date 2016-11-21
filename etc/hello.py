@@ -8,11 +8,3 @@ def app(environ, start_response):
  body = [i+'\r\n' for i in body]
  start_response(status, headers )
  return body
-
- # gunicorn config
-CONFIG = {
-  'working_dir': '/home/box/web/etc/hello.py',
-  'args': (
-   'bind = "0.0.0.0:8080"'
-   ),
- }
