@@ -1,5 +1,6 @@
-ln -sf /home/box/web/etc/nginx.conf  /etc/nginx/sites-enabled/default
-/etc/init.d/nginx restart
-
-gunicron -c /home/box/web/etc/hello.py hello:app --daemon
-gunicron -c /home/box/web/ask/qa/views.py views:test --daemon
+sudo rm /etc/nginx/sites-enabled/default
+sudo ln -sf /home/box/web/etc/nginx.conf  /etc/nginx/sites-enabled/test.conf
+sudo /etc/init.d/nginx restart
+sudo ln -sf /home/box/web/etc/gunicorn-hello.conf /etc/gunicorn.d/test-hello
+sudo ln -sf /home/box/web/etc/gunicorn-django.conf /etc/gunicorn.d/test-django
+sudo /etc/init.d/gunicorn restart
